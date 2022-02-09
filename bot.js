@@ -31,6 +31,10 @@ CMDAliases.aliases.forEach((alias) => { Bot.commands.set(alias.alias, Bot.comman
 // API keys initialization
 Bot.keys = require("./src/secret/keys.json");
 
+// Github API initialization
+const { Octokit } = require("octokit");
+Bot.github = new Octokit({ auth: Bot.keys.github });
+
 // Setup ready listener
 Bot.client.on("ready", () => {
     console.log(`Logged into Discord as ${Bot.client.user.tag}`);
