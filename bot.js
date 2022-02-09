@@ -48,7 +48,7 @@ Bot.client.on("ready", () => {
         let load = Bot.store.dev.get("update");
         if (load.recent) {
             Bot.store.dev.set("update", false, "recent");
-            Bot.client.guilds.cache.get(load.guild).channels.cache.get(load.channel).send(`${load.issuer}, Megras has restarted and updated.`);
+            Bot.client.guilds.cache.get(load.guild).channels.cache.get(load.channel).send(`${load.issuer}, Logger has restarted and updated.`);
         }
     }
 });
