@@ -28,12 +28,6 @@ CMDFiles.forEach((file) => {
 });
 CMDAliases.aliases.forEach((alias) => { Bot.commands.set(alias.alias, Bot.commands.get(alias.cmd)); });
 
-// Streaming manager initialization
-const streamFiles = FS.readdirSync("./src/streaming").filter(i => i.endsWith(".js"));
-Bot.streams = [];
-streamFiles.forEach((file) => { Bot.streams.push(require(`./src/streaming/${file}`)); });
-
-
 // API keys initialization
 Bot.keys = require("./src/secret/keys.json");
 
