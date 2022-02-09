@@ -57,6 +57,9 @@ Bot.client.on("messageCreate", (message) => {
     if (!inServer) { return; }
     console.log(`${message.author.username}: ${message.content}`);
 
+    // Reject without prefix
+    if (!message.content.startsWith(Bot.config.prefix)) { return; }
+
     // Command handling
     let args = message.content.slice(Bot.config.prefix.length).split(" ");
     let command = args.shift().toLowerCase();
