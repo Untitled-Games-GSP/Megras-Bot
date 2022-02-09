@@ -55,7 +55,6 @@ Bot.client.on("messageCreate", (message) => {
     let inServer = false;
     Bot.config.serverTargets.forEach((id) => { inServer |= (id === message.guildId); });
     if (!inServer) { return; }
-    console.log(`${message.author.username}: ${message.content}`);
 
     // Reject without prefix
     if (!message.content.startsWith(Bot.config.prefix)) { return; }
