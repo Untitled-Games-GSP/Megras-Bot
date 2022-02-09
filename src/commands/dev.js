@@ -24,11 +24,6 @@ module.exports = {
                 args.shift();
                 eval(args.join(" "));
             break;
-            case "dellvl":
-                Bot.store.users.exp.forEach((v, k) => {Bot.store.users.exp.delete(k)});
-                Bot.store.users.lvl.forEach((v, k) => {Bot.store.users.lvl.delete(k)});
-                message.reply("Deleted everything");
-            break;
         }
     }
 }
