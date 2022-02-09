@@ -1,5 +1,5 @@
-# Megras-Bot
-Entertainment and adventure bot
+# UCSG_Progress_Tracker
+Bot to keep track of all changes made within the game project. Forked from an adventure bot as the framework is reusable.
 
 ## How to install
 1. `git clone` this repository
@@ -8,5 +8,3 @@ Entertainment and adventure bot
 1. Replace relevant information in `src/secret/keys.json` and `src/config.json` (Bot token and owner Id are most important)
 1. To get it working in your server, add your server's Id to *serverTargets* in `src/config.json`
 1. Finally, `node index.js` to run the bot
-
-You may need to change the emoji Ids too, as they are preserved in a private server.
