@@ -14,7 +14,7 @@ module.exports = {
         switch (args[0].toLowerCase())
         {
             case "login":
-                const { data: login } = await Bot.github.rest.users.getAuthenticated();
+                const { data: { login } } = await Bot.github.rest.users.getAuthenticated();
                 message.channel.send(`Logged in as; ${login}`);
             break;
         }
