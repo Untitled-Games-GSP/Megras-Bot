@@ -1,3 +1,5 @@
+const Embed = require("../templates/embeds.js");
+
 module.exports = {
     name : "dev-git",
     desc : "The github developer interface",
@@ -22,7 +24,8 @@ module.exports = {
                 const latest = await Bot.github.request(`GET /repos/{owner}/{repo}/commits`, {
                     owner: Bot.config.repos[0].owner, repo: Bot.config.repos[0].repo, per_page: 100
                 }); 
-                console.log(latest.data[0].commit);
+                let latestCommit = latest.data[0].commit;
+                message.channel.send({ embeds: [Embed.SimpleEmbed(latestCommit.author.name, latestCommit.message)] });
             break;
         }
     }
