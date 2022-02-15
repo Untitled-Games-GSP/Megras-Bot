@@ -17,6 +17,12 @@ module.exports = {
                 const { data: { login } } = await Bot.github.rest.users.getAuthenticated();
                 message.channel.send(`Logged in as; ${login}`);
             break;
+            case "commits":
+                const latest = await Bot.github.request(`GET /repos/{owner}/{repo}/commits`, {
+                    owner: Bot.config.repos[0].owner, repo: Bot.config.repos[0].repo, per_page: 100
+                }); 
+                console.log(latest);
+            break;
         }
     }
 

@@ -4,5 +4,8 @@
 	],
 	"prefix": "!!",
 	"devId": "196013975291297792",
-	"statusUrl": "https://www.youtube.com/watch?v=TkA7xQb6uPk"
+	"statusUrl": "https://www.youtube.com/watch?v=TkA7xQb6uPk",
+	"repos": [
+		{ "owner": "Untitled-Games-GSP", "repo": "UCSG_Code" }
+	]
 }
