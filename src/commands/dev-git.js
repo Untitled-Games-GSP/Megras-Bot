@@ -8,7 +8,8 @@ module.exports = {
     visible : false,
 
     async Run(Bot, args, message) {
-        if (message.author.id !== Bot.config.devId) { return; }
+        let dev = false;
+        Bot.config.devIds.forEach((id) => { dev |= (message.author.id === id); }); if (!dev) { return; }
         if (args.length <= 0) { return; }
         // Run through developer commands
         switch (args[0].toLowerCase())
