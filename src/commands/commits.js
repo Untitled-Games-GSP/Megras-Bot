@@ -9,16 +9,27 @@ module.exports = {
     visible : true,
 
     async Run(Bot, args, message) {
-        // Iterate throughe every repository
+        // Iterate through every repository
         for (const repo of Bot.config.repos) {
+            // Retreive 100 latest commits
             const latest = await Bot.github.request(`GET /repos/{owner}/{repo}/commits`, {
                 owner: repo.owner, repo: repo.repo, per_page: 100
             }); 
+            // Iterate through every latest commit
             latest.data.forEach((d) => {
                 const commit = d.commit;
-                if (Bot.store.git.commits.has(commit)) 
-                { 
 
+                // If commit doesn't exist in cache, add it to cache
+                const log = `${commit.committer.name};${commit.committer.date}`;
+                if (!Bot.store.git.commits.has(log)) 
+                { 
+                    Bot.store.git.commits.set(log, {
+                        name: commit.committer.name,
+                        email: commit.committer.email,
+                        date: commit.committer.date,
+                        message: commit.message,
+                        url: commit.url
+                    });
                 }
             });
         }
