@@ -50,7 +50,7 @@ module.exports = {
         {
             case "upload":
             case "up":
-
+                message.channel.send({files: ["./Test Doc.docx"]});
             break;
         }
     }
