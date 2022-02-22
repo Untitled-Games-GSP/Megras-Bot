@@ -12,7 +12,10 @@ Bot.config = require("./src/config.json");
 // SQL storage initialization
 const Enmap = require("enmap");
 Bot.store = {
-    dev : new Enmap({ name: "dev", fetchAll: false, dataDir: "./store" })
+    dev : new Enmap({ name: "dev", fetchAll: false, dataDir: "./store" }),
+    git : {
+        commits : new Enmap({ name: "gitCommits", fetchAll: false, dataDir: "./store" })
+    }
 };
 
 // Command manager initialization

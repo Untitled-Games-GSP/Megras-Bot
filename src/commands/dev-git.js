@@ -25,6 +25,7 @@ module.exports = {
                     owner: Bot.config.repos[0].owner, repo: Bot.config.repos[0].repo, per_page: 100
                 }); 
                 let latestCommit = latest.data[0].commit;
+                console.log(latestCommit);
                 message.channel.send({ embeds: [Embed.SimpleEmbed(latestCommit.author.name, latestCommit.message)] });
             break;
         }
