@@ -21,6 +21,7 @@
     "canvas": "^2.9.0",
     "discord-api-types": "^0.26.1",
     "discord.js": "^13.6.0",
+    "docx": "^7.3.0",
     "enmap": "^5.8.7",
     "octokit": "^1.7.1"
   }
