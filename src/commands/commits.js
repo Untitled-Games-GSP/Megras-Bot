@@ -27,7 +27,7 @@ module.exports = {
     visible : true,
 
     async Run(Bot, args, message) {
-        await RetreiveCommits();
+        RetreiveCommits();
     }
 
 }
