@@ -21,7 +21,7 @@ module.exports = {
                 const commit = d.commit;
 
                 // If commit doesn't exist in cache, add it to cache
-                const log = `${commit.committer.name};${commit.committer.date}`;
+                const log = `${repo.repo};${commit.committer.name};${commit.committer.date}`;
                 if (!Bot.store.git.commits.has(log)) 
                 { 
                     Bot.store.git.commits.set(log, {
