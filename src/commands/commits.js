@@ -1,3 +1,4 @@
+const Embed = require("../templates/embeds.js");
 
 module.exports = {
     name : "commits",
@@ -33,6 +34,8 @@ module.exports = {
                 }
             });
         }
+
+        message.reply({ embeds: [Embed.SimpleEmbed("Successfully retreieved commits", "Cached to bot")] });
     }
 
 }
