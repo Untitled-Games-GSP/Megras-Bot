@@ -1,4 +1,4 @@
-const { Document, Paragraph, Packer, TextRun } = require("docx");
+const { Document, Paragraph, Packer, TextRun, Table } = require("docx");
 const FS = require("fs");
 
 const Embed = require("../templates/embeds.js");
@@ -7,7 +7,7 @@ function generateDocs(Bot)
 {
     let commits = [];
     Bot.store.git.forEach((commit, key) => {
-        const repo = key.split(";").pop();
+        const repo = key.split(';')[0];
         commits.push(`${commit.name} committed in ${repo} on ${commit.date}.\n${commit.message}.\n${commit.url}`);
     });
 
