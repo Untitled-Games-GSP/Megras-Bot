@@ -15,7 +15,7 @@ function generateDocs(gitCommits) {
 
     const doc = new Document({
         sections: [{
-            children: [Table({rows: commits})]
+            children: [new Table({rows: commits})]
         }]
     });
 
