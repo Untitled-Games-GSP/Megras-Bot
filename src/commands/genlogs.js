@@ -21,7 +21,7 @@ function generateDocs(gitCommits) {
         return Date.parse(b.date) - Date.parse(a.date);
     });
 
-    let aShading = { fill: "880aa8", type: ShadingType.PERCENT_95, color: "auto" };
+    let aShading = { fill: "abbdff", type: ShadingType.PERCENT_10, color: "auto" };
 
     // Save all commits to docx table objects
     let commits = [];
