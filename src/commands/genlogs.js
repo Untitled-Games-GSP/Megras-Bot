@@ -61,12 +61,15 @@ module.exports = {
     visible : true,
 
     Run(Bot, args, message) {
-        let allCommits = Bot.store.git.commits.fetchEverything();
-        generateDocs(allCommits);
+        // Generate logs and save internally
+        if (args.length <= 0) { 
+            let allCommits = Bot.store.git.commits.fetchEverything();
+            generateDocs(allCommits);
+            message.reply({ embeds: [Embed.SimpleEmbed("Generated docs", "Saved internally")] }); 
+            return; 
+        }
 
-        const embed = Embed.SimpleEmbed("Generated docs", "Saved internally");
-        if (args.length <= 0) { message.reply({ embeds: [embed] }); return; }
-
+        // Upload logs from local storage
         switch (args[0].toLowerCase())
         {
             case "upload":
