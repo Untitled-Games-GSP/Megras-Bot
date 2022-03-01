@@ -4,19 +4,24 @@ const FS = require("fs");
 const Embed = require("../templates/embeds.js");
 
 function generateDocs(gitCommits) {
-    /*const commitTable = new Table({
-        rows: commits
+    let commits = [];
+    allCommits.forEach((commit, key) => {
+        let commitText = `${commit.name} committed in ${(key.split(';'))[0]} on ${commit.date}.\n${commit.message}.\n${commit.url}`;
+        let tableEntry = new TableRow({
+            children: [new TableCell({ children: [new Paragraph({ text: commitText })] })]
+        })
+        commits.push(tableEntry);
     });
 
     const doc = new Document({
         sections: [{
-            children: [commitTable]
+            children: [Table({rows: commits})]
         }]
     });
 
     Packer.toBuffer(doc).then((buffer)=> {
         FS.writeFileSync("Test Doc.docx", buffer);
-    })*/
+    })
 }
 
 module.exports = {
@@ -30,13 +35,9 @@ module.exports = {
     visible : true,
 
     Run(Bot, args, message) {
-        let commits = [];
         let allCommits = Bot.store.git.commits.fetchEverything();
-        allCommits.forEach((commit, key) => {
-            commits.push(`${commit.name} committed in repository on ${commit.date}.\n${commit.message}.\n${commit.url}`);
-            console.log(commit.message);
-        });
-        generateDocs(commits);
+        generateDocs(allCommits);
+
         const embed = Embed.SimpleEmbed("Generated docs", "Saved internally");
         if (args.length <= 0) { message.reply({ embeds: [embed] }); return; }
 
