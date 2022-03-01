@@ -46,7 +46,7 @@ function generateDocs(gitCommits) {
 
     // Save document to local storage
     Packer.toBuffer(doc).then((buffer)=> {
-        FS.writeFileSync("Test Doc.docx", buffer);
+        FS.writeFileSync("Commit Logs.docx", buffer);
     })
 }
 
@@ -74,7 +74,7 @@ module.exports = {
         {
             case "upload":
             case "up":
-                message.channel.send({files: ["./Test Doc.docx"]});
+                message.channel.send({files: ["./Commit Logs.docx"]});
             break;
         }
     }
