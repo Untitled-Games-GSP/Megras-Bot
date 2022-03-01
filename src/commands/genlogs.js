@@ -21,22 +21,24 @@ function generateDocs(gitCommits) {
         return Date.parse(b.date) - Date.parse(a.date);
     });
 
-    let aShading = { fill: "abbdff", type: ShadingType.PERCENT_10, color: "auto" };
+    let aShading = { fill: "abbdff", type: ShadingType.CLEAR, color: "auto" };
+    let bShading = { fill: "ffffff", type: ShadingType.CLEAR, color: "auto" };
 
     // Save all commits to docx table objects
-    let commits = [];
+    let commits = []; let alt = true;
     allCommits.forEach((commit) => {
         let commitText = ` committed in  on .\n.\n`;
         let tableEntry = new TableRow({
             children: [
-                new TableCell({ children: [new Paragraph({ text: `${commit.name}` })], shading: aShading }),
+                new TableCell({ children: [new Paragraph({ text: `${commit.name}` })], shading: (alt ? aShading : bShading) }),
                 new TableCell({ children: [new Paragraph({ text: `${commit.repo}` })] }),
-                new TableCell({ children: [new Paragraph({ text: `${commit.message}` })], shading: aShading }),
+                new TableCell({ children: [new Paragraph({ text: `${commit.message}` })], shading: (alt ? aShading : bShading) }),
                 new TableCell({ children: [new Paragraph({ text: `${commit.date}` })] }),
-                new TableCell({ children: [new Paragraph({ text: `${commit.url}` })], shading: aShading })
+                new TableCell({ children: [new Paragraph({ text: `${commit.url}` })], shading: (alt ? aShading : bShading) })
             ]
         })
         commits.push(tableEntry);
+        alt = !alt;
     });
 
     // Create document
