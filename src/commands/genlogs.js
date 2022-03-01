@@ -5,22 +5,18 @@ const Embed = require("../templates/embeds.js");
 
 function generateDocs(Bot)
 {
+    let commits = [];
+    Bot.store.git.forEach((commit, key) => {
+        const repo = key.split(";").pop();
+        commits.push(`${commit.name} committed in ${repo} on ${commit.date}.\n${commit.message}.\n${commit.url}`);
+    });
+
     const doc = new Document({
         sections: [{
             properties: {},
             children: [
-                new Paragraph({
-                    children: [
-                        new TextRun("Hello World"),
-                        new TextRun({
-                            text: "Foo Bar",
-                            bold: true,
-                        }),
-                        new TextRun({
-                            text: "\tGithub is the best",
-                            bold: true,
-                        }),
-                    ]
+                new Table({
+                    rows: commits
                 })
             ]
         }]
