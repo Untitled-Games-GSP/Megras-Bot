@@ -5,7 +5,7 @@ const Embed = require("../templates/embeds.js");
 
 function generateDocs(gitCommits) {
     let commits = [];
-    allCommits.forEach((commit, key) => {
+    gitCommits.forEach((commit, key) => {
         let commitText = `${commit.name} committed in ${(key.split(';'))[0]} on ${commit.date}.\n${commit.message}.\n${commit.url}`;
         let tableEntry = new TableRow({
             children: [new TableCell({ children: [new Paragraph({ text: commitText })] })]
