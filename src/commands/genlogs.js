@@ -1,4 +1,4 @@
-const { Document, Paragraph, Packer, TextRun, Table, TableRow, TableCell } = require("docx");
+const { Document, Paragraph, Packer, TextRun, Table, TableRow, TableCell, ShadingType } = require("docx");
 const FS = require("fs");
 
 const Embed = require("../templates/embeds.js");
@@ -21,17 +21,19 @@ function generateDocs(gitCommits) {
         return Date.parse(b.date) - Date.parse(a.date);
     });
 
+    let aShading = { fill: "880aa8", type: ShadingType.PERCENT_95, color: "auto" };
+
     // Save all commits to docx table objects
     let commits = [];
     allCommits.forEach((commit) => {
         let commitText = ` committed in  on .\n.\n`;
         let tableEntry = new TableRow({
             children: [
-                new TableCell({ children: [new Paragraph({ text: `${commit.name}` })] }),
+                new TableCell({ children: [new Paragraph({ text: `${commit.name}` })], shading: aShading }),
                 new TableCell({ children: [new Paragraph({ text: `${commit.repo}` })] }),
-                new TableCell({ children: [new Paragraph({ text: `${commit.message}` })] }),
+                new TableCell({ children: [new Paragraph({ text: `${commit.message}` })], shading: aShading }),
                 new TableCell({ children: [new Paragraph({ text: `${commit.date}` })] }),
-                new TableCell({ children: [new Paragraph({ text: `${commit.url}` })] })
+                new TableCell({ children: [new Paragraph({ text: `${commit.url}` })], shading: aShading })
             ]
         })
         commits.push(tableEntry);
