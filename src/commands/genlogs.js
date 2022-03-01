@@ -1,4 +1,4 @@
-const { Document, Paragraph, Packer, TextRun, Table } = require("docx");
+const { Document, Paragraph, Packer, TextRun, Table, TableRow, TableCell } = require("docx");
 const FS = require("fs");
 
 const Embed = require("../templates/embeds.js");
@@ -7,7 +7,10 @@ function generateDocs(Bot)
 {
     let commits = [];
     Bot.store.git.commits.forEach((commit, key) => {
-        commits.push(`${commit.name} committed in repository on ${commit.date}.\n${commit.message}.\n${commit.url}`);
+        const row = new TableRow({
+            children: new Paragraph({ text: `${commit.name} committed in repository on ${commit.date}.\n${commit.message}.\n${commit.url}` })
+        })
+        commits.push(row);
     });
 
     const commitTable = new Table({
