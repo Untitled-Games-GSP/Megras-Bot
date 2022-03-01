@@ -9,7 +9,6 @@
 	],
 	"statusUrl": "https://www.youtube.com/watch?v=TkA7xQb6uPk",
 	"repos": [
-		{ "owner": "Untitled-Games-GSP", "repo": "UCSG_Code" },
-		{ "owner": "Untitled-Games-GSP", "repo": "UCSG_Models" }
+		{ "owner": "Untitled-Games-GSP", "repo": "UCSG_Code" }
 	]
 }
