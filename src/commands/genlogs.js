@@ -9,7 +9,7 @@ function generateDocs(Bot)
     Bot.store.git.commits.forEach((commit, key) => {
         const row = new TableRow({
             children: new Paragraph({ text: `${commit.name} committed in repository on ${commit.date}.\n${commit.message}.\n${commit.url}` })
-        })
+        });
         commits.push(row);
     });
 
