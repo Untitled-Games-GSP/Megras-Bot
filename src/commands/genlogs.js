@@ -7,8 +7,7 @@ function generateDocs(Bot)
 {
     let commits = [];
     Bot.store.git.forEach((commit, key) => {
-        const repo = key.split(';')[0];
-        commits.push(`${commit.name} committed in ${repo} on ${commit.date}.\n${commit.message}.\n${commit.url}`);
+        commits.push(`${commit.name} committed in repository on ${commit.date}.\n${commit.message}.\n${commit.url}`);
     });
 
     const doc = new Document({
