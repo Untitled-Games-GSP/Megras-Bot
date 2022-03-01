@@ -31,7 +31,8 @@ module.exports = {
 
     Run(Bot, args, message) {
         let commits = [];
-        Bot.store.git.commits.forEach((commit, key) => {
+        let allCommits = Bot.store.git.commits.fetchEverything();
+        allCommits.forEach((commit, key) => {
             commits.push(`${commit.name} committed in repository on ${commit.date}.\n${commit.message}.\n${commit.url}`);
             console.log(commit.message);
         });
