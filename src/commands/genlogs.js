@@ -3,10 +3,10 @@ const FS = require("fs");
 
 const Embed = require("../templates/embeds.js");
 
-function generateDocs(Bot)
+function generateDocs(gitCommits)
 {
     let commits = [];
-    Bot.store.git.commits.forEach((commit, key) => {
+    gitCommits.forEach((commit, key) => {
         const row = new TableRow({
             children: [new TableCell({
                 children: [new Paragraph({ text: `${commit.name} committed in repository on ${commit.date}.\n${commit.message}.\n${commit.url}` })]
@@ -41,7 +41,7 @@ module.exports = {
     visible : true,
 
     Run(Bot, args, message) {
-        generateDocs(Bot);
+        generateDocs(Bot.store.git.commits);
         const embed = Embed.SimpleEmbed("Generated docs", "Saved internally");
         if (args.length <= 0) { message.reply({ embeds: [embed] }); return; }
 
