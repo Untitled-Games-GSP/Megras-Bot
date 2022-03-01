@@ -4,7 +4,7 @@ const FS = require("fs");
 const Embed = require("../templates/embeds.js");
 
 function generateDocs(gitCommits) {
-    const commitTable = new Table({
+    /*const commitTable = new Table({
         rows: commits
     });
 
@@ -16,7 +16,7 @@ function generateDocs(gitCommits) {
 
     Packer.toBuffer(doc).then((buffer)=> {
         FS.writeFileSync("Test Doc.docx", buffer);
-    })
+    })*/
 }
 
 module.exports = {
