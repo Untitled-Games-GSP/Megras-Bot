@@ -18,7 +18,7 @@ function generateDocs(gitCommits) {
     
     // Sort array by date
     allCommits.sort((a, b) => {
-        return Date.parse(a.date) - Date.parse(b.date);
+        return Date.parse(b.date) - Date.parse(a.date);
     });
 
     // Save all commits to docx table objects
