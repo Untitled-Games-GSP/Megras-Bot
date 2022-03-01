@@ -4,10 +4,6 @@ const FS = require("fs");
 const Embed = require("../templates/embeds.js");
 
 function generateDocs(gitCommits) {
-
-
-    console.log(commits);
-
     const commitTable = new Table({
         rows: commits
     });
