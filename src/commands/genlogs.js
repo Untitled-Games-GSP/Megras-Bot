@@ -10,14 +10,13 @@ function generateDocs(Bot)
         commits.push(`${commit.name} committed in repository on ${commit.date}.\n${commit.message}.\n${commit.url}`);
     });
 
+    const commitTable = new Table({
+        rows: commits
+    });
+
     const doc = new Document({
         sections: [{
-            properties: {},
-            children: [
-                new Table({
-                    rows: commits
-                })
-            ]
+            children: [commitTable]
         }]
     });
 
