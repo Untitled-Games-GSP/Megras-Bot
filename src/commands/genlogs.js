@@ -4,26 +4,47 @@ const FS = require("fs");
 const Embed = require("../templates/embeds.js");
 
 function generateDocs(gitCommits) {
-    let commits = [];
+    // Save all git commits to an array
+    let allCommits = [];
     gitCommits.forEach((commit, key) => {
+        allCommits.push({
+            name: commit.name,
+            repo: `${(key.split(';'))[0]}`,
+            message: commit.message,
+            date: commit.date,
+            url: commit.url
+        });
+    })
+    
+    // Sort array by date
+    allCommits.sort((a, b) => {
+        return (new Date(a.date) > new Date(b.date));
+    });
+
+    // Save all commits to docx table objects
+    let commits = [];
+    allCommits.forEach((commit) => {
         let commitText = ` committed in  on .\n.\n`;
         let tableEntry = new TableRow({
             children: [
                 new TableCell({ children: [new Paragraph({ text: `${commit.name}` })] }),
-                new TableCell({ children: [new Paragraph({ text: `${(key.split(';'))[0]}` })] }),
+                new TableCell({ children: [new Paragraph({ text: `${commit.repo}` })] }),
                 new TableCell({ children: [new Paragraph({ text: `${commit.message}` })] }),
+                new TableCell({ children: [new Paragraph({ text: `${commit.date}` })] }),
                 new TableCell({ children: [new Paragraph({ text: `${commit.url}` })] })
             ]
         })
         commits.push(tableEntry);
     });
 
+    // Create document
     const doc = new Document({
         sections: [{
             children: [new Table({rows: commits})]
         }]
     });
 
+    // Save document to local storage
     Packer.toBuffer(doc).then((buffer)=> {
         FS.writeFileSync("Test Doc.docx", buffer);
     })
