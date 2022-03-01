@@ -6,7 +6,7 @@ const Embed = require("../templates/embeds.js");
 function generateDocs(Bot)
 {
     let commits = [];
-    Bot.store.git.forEach((commit, key) => {
+    Bot.store.git.commits.forEach((commit, key) => {
         commits.push(`${commit.name} committed in repository on ${commit.date}.\n${commit.message}.\n${commit.url}`);
     });
 
