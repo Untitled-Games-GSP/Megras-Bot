@@ -1,7 +1,8 @@
 {
     "aliases": [
-        { "alias": "rank", "cmd": "level" },
-        { "alias": "lvl", "cmd": "level" },
-        { "alias": "aly", "cmd": "alliance" }
+        { "alias": "showcom", "cmd": "showcommits" },
+        { "alias": "sc", "cmd": "showcommits" },
+        { "alias": "showc", "cmd": "showcommits" }
+        
     ]
 }
