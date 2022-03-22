@@ -12,7 +12,6 @@ module.exports = {
     async Run(Bot, args, message) {
         let recent = 5;
         if (args.length > 0 && !isNaN(parseInt(args[0])) && parseInt(args[0]) > 0) { recent = parseInt(args[0]); }
-        let iRecent = recent;
         
         // Get cached commits
         let commitMessages = [];
@@ -35,12 +34,12 @@ module.exports = {
         });
 
         // Iterate through recent allCommits
-        while (iRecent > 0) {
+        for (let i = 0; i < recent; ++i) {
             commitMessages.push({
-                name: allCommits[iRecent].name,
-                value: `[${allCommits[iRecent].message}](${allCommits[iRecent].url})`
+                name: allCommits[i].name,
+                value: `[${allCommits[i].message}](${allCommits[i].url})`
             });
-            iRecent--;
+            if (i >= allCommits.length) { break; }
         }
 
         message.reply({ embeds: [Embed.FieldEmbed("Recent commits", `${recent} most recent cached commits`, commitMessages)] });
