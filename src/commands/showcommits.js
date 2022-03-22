@@ -36,7 +36,7 @@ module.exports = {
         // Iterate through recent allCommits
         for (let i = 0; i < recent; ++i) {
             commitMessages.push({
-                name: allCommits[i].name,
+                name: `${allCommits[i].name} - ${allCommits[i].date}`,
                 value: `[${allCommits[i].message}](${allCommits[i].url})`
             });
             if (i >= allCommits.length) { break; }
