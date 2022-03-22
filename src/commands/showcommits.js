@@ -14,17 +14,34 @@ module.exports = {
         if (args.length > 0 && !isNaN(parseInt(args[0])) && parseInt(args[0]) > 0) { recent = parseInt(args[0]); }
         let iRecent = recent;
         
+        // Get cached commits
         let commitMessages = [];
-        let allCommits = Bot.store.git.commits.fetchEverything();
-        allCommits.forEach((commit) => {
-            if (iRecent > 0) {
-                commitMessages.push({
-                    name: commit.name,
-                    value: `[${commit.message}](${commit.url})`
-                });
-                iRecent--;
-            }
+        let gitCommits = Bot.store.git.commits.fetchEverything();
+
+        // Save relevant information to array
+        let allCommits = [];
+        gitCommits.forEach((commit, key) => {
+            allCommits.push({
+                name: commit.name,
+                message: commit.message,
+                date: commit.date,
+                url: commit.url
+            });
+        })
+        
+        // Sort array by date
+        allCommits.sort((a, b) => {
+            return Date.parse(b.date) - Date.parse(a.date);
         });
+
+        // Iterate through recent allCommits
+        while (iRecent > 0) {
+            commitMessages.push({
+                name: allCommits[iRecent].name,
+                value: `[${allCommits[iRecent].message}](${allCommits[iRecent].url})`
+            });
+            iRecent--;
+        }
 
         message.reply({ embeds: [Embed.FieldEmbed("Recent commits", `${recent} most recent cached commits`, commitMessages)] });
     }
