@@ -15,7 +15,8 @@ module.exports = {
         let iRecent = recent;
         
         let commitMessages = [];
-        Bot.store.git.commits.forEach((commit) => {
+        let allCommits = Bot.store.git.commits.fetchEverything();
+        allCommits.forEach((commit) => {
             if (iRecent > 0) {
                 commitMessages.push({
                     name: commit.name,
