@@ -12,19 +12,20 @@ module.exports = {
     async Run(Bot, args, message) {
         let recent = 5;
         if (args.length > 0 && !isNaN(parseInt(args[0])) && parseInt(args[0]) > 0) { recent = parseInt(args[0]); }
+        let iRecent = recent;
         
         let commitMessages = [];
         Bot.store.git.commits.forEach((commit) => {
-            if (recent > 0) {
+            if (iRecent > 0) {
                 commitMessages.push({
                     name: commit.name,
-                    value: `[${commit.message}](commit.url)`
+                    value: `[${commit.message}](${commit.url})`
                 });
-                recent--;
+                iRecent--;
             }
         });
 
-        message.reply({ embeds: [Embed.FieldEmbed("Recent commits", "", commitMessages)] });
+        message.reply({ embeds: [Embed.FieldEmbed("Recent commits", `${recent} most recent cached commits`, commitMessages)] });
     }
 
 }
